@@ -1,12 +1,44 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home Page</title>
+    <style>
+        .image-container {
+            position: relative;
+            display: inline-block;
+            width: 100%;
+            text-align: center;
+        }
+
+        .image-container img {
+            width: 100%; /* Adjust based on your need */
+            height: auto;
+            display: block;
+        }
+
+        .image-container h1 {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            background-color: rgba(0, 0, 0, 0.5); /* Optional: Adds a semi-transparent background */
+            padding: 10px 20px;
+            border-radius: 10px;
+            font-size: 24px;
+        }
+    </style>
 </head>
 <body>
-    <h1>Welcome to the Home Page</h1>
+
     <a href="index.html">Go Back</a>
+    
+    <div class="image-container">
+        <img src="img/person-working-html-computer.jpg" alt="Person working on HTML">
+        <h1>Welcome to the Home Page</h1>
+    </div>
+
 </body>
 </html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voice Assistant Navigation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+        }
+        button {
+            font-size: 20px;
+            padding: 10px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>AI-Powered Voice Navigation</h1>
+    <p>Click the button and say a command (e.g., "Go to home", "Open about page", "Go to contact page")</p>
+    <button onclick="startListening()">Start Listening</button>
+
+    <script>
+        function startListening() {
+            const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+            recognition.lang = 'en-US';
+            recognition.start();
+
+            recognition.onresult = function(event) {
+                let voiceCommand = event.results[0][0].transcript.toLowerCase();
+                console.log("Recognized:", voiceCommand);
+                processCommand(voiceCommand);
+            };
+
+            recognition.onerror = function(event) {
+                console.error("Error:", event.error);
+                speak("Sorry, I didn't catch that.");
+            };
+        }
+
+        function processCommand(command) {
+            if (command.includes("home")) {
+                speak("Navigating to the home page.");
+                window.location.href = "home.html";
+            } else if (command.includes("about")) {
+                speak("Opening the about page.");
+                window.location.href = "about.html";
+            } else if (command.includes("contact")) {
+                speak("Redirecting to the contact page.");
+                window.location.href = "contact.html";
+            } else {
+                speak("I did not understand that command.");
+            }
+        }
+
+        function speak(text) {
+            const speech = new SpeechSynthesisUtterance(text);
+            speech.lang = 'en-US';
+            window.speechSynthesis.speak(speech);
+        }
+    </script>
+</body>
+</html>
